@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Additional styles for the circle */
+.circle {
+  @apply absolute bg-blue-500 rounded-full transition-transform duration-75 ease-out;
+  width: 20px;
+  height: 20px;
+}
