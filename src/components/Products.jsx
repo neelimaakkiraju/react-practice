@@ -1,9 +1,10 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
+import CursorFollower from "./cursorFollower"
 
 const ProductsPage = () => {
  
-  const [ProductData,setProductData] = useState("")
+  const [productData,setProductData] = useState([])
   useEffect(()=>{
      fetchData()
   },[])
@@ -14,23 +15,22 @@ const ProductsPage = () => {
      console.log(res)
   }
   return (
-    <div className='text-center'>
-     <h1>
-     products
-     {
-      ProductData.map((elem,index)=>{
-        <div>
-          <h1>
-            {elem.category}
-          </h1>
+    
+      <div className='text-center'>
+        <CursorFollower/>
+        <h1 className='text-2xl font-bold my-4'>Products</h1>
+  
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4'>
+          {productData.map((product) => (
+            <div key={product.id} className='border p-4 rounded shadow'>
+              <img src={product.image} alt={product.title} className='w-32 h-32 mx-auto object-contain' />
+              <h2 className='text-lg font-semibold mt-2'>{product.title}</h2>
+              <p className='text-gray-600'>${product.price}</p>
+            </div>
+          ))}
         </div>
-      })
-     }
-     </h1>
-    
-    
       </div>
-  )
+    );
 }
 
 export default ProductsPage
